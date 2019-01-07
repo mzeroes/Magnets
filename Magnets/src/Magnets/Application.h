@@ -11,7 +11,7 @@ namespace  Magnets {
 
 		void run();
 	};
-	// TOBE IN CLIENT
+	// TO BE DEFINED IN CLIENT
 	Application* CreateApplication();
 
 } // namespace Magnets

@@ -4,15 +4,17 @@
 
 extern Magnets::Application* Magnets::CreateApplication();
 
-#include <stdio.h>
-
 
 int main(int argc, char** argv) {
-	printf("Starting Application...");
+	
+	Magnets::Log::Init();
+
+	MG_CORE_INFO("Starting application");
+	
 	auto app = Magnets::CreateApplication();
 	app->run();
-	delete app;
-	printf("Ending Application...");
 
+
+	delete app;
 }
 #endif // MG_PLATFORM_WINDOWS

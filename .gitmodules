@@ -1,0 +1,6 @@
+[submodule "Magnets/vendor/spdlog"]
+	path = Magnets/vendor/spdlog
+	url = https://github.com/gabime/spdlog
+[submodule "vendor/premake-core"]
+	path = vendor/premake-core
+	url = https://github.com/premake/premake-core.git
