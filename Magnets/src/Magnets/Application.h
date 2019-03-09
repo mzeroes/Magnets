@@ -1,17 +1,16 @@
 #pragma once
-
 #include <Magnets/Core.h>
 
-namespace  Magnets {
+namespace Magnets {
 
-	class MAGNETS_API Application {
-	public:
-		Application();
-		virtual ~Application() ;
+class MAGNETS_API Application {
+ public:
+  Application();
+  virtual ~Application();
 
-		void run();
-	};
-	// TO BE DEFINED IN CLIENT
-	Application* CreateApplication();
+  void run();
+};
+// TO BE DEFINED IN CLIENT
+Application *CreateApplication();
 
-} // namespace Magnets
+}  // namespace Magnets

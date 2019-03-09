@@ -10,6 +10,11 @@ workspace "Magnets"
 
 outputdir = "%{cfg.buildcfg}-%{cfg.system}-%{cfg.architecture}"
 
+-- Include directories relative to root folder (solution directory)
+IncludeDir = {}
+IncludeDir["GLFW"] = "Magnets/vendor/GLFW/include"
+include "Magnets/vendor/GLFW"
+
 project "Magnets"
 	location "Magnets"
 	kind "SharedLib"
@@ -18,6 +23,9 @@ project "Magnets"
 	targetdir ("bin/" .. outputdir .. "/%{prj.name}")
 	objdir ("bin-int/" .. outputdir .. "/%{prj.name}")
 
+	pchheader "mgpch.h"
+	pchsource "Magnets/src/mgpch.cpp"
+	
 	files
 	{
 		"%{prj.name}/src/**.h",
@@ -26,8 +34,15 @@ project "Magnets"
 
 	includedirs
 	{
+		"Magnets/src",
 		"Magnets/vendor/spdlog/include",
-		"Magnets/src"
+		"%{IncludeDir.GLFW}",
+	}
+
+	links 
+	{ 
+		"GLFW",
+		"opengl32.lib"
 	}
 
 	filter "system:windows"
@@ -38,7 +53,8 @@ project "Magnets"
 		defines
 		{
 			"MG_PLATFORM_WINDOWS",
-			"MG_BUILD_DLL"
+			"MG_BUILD_DLL",
+			"GLFW_INCLUDE_NONE"
 		}
 
 		postbuildcommands
@@ -105,4 +121,3 @@ project "Sandbox"
 	filter "configurations:Dist"
 		defines "MG_DIST"
 		optimize "On"
-
